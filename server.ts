@@ -1,14 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { kv } from '@vercel/kv';
 import { createServer as createViteServer } from 'vite';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dbPath = path.join(__dirname, 'db.json');
 
 interface UserData {
   accounts: any[];
@@ -23,19 +22,9 @@ interface Database {
   [email: string]: UserData;
 }
 
-async function readDb(): Promise<Database> {
-  try {
-    await fs.access(dbPath);
-    const data = await fs.readFile(dbPath, 'utf-8');
-    return JSON.parse(data);
-  } catch (error) {
-    return {};
-  }
-}
 
-async function writeDb(data: Database): Promise<void> {
-  await fs.writeFile(dbPath, JSON.stringify(data, null, 2));
-}
+
+
 
 async function startServer() {
     const app = express();
@@ -47,8 +36,7 @@ async function startServer() {
     app.get('/api/data/:email', async (req, res) => {
         try {
             const { email } = req.params;
-            const db = await readDb();
-            const userData = db[email] || {
+            const userData = await kv.get<UserData>(email) || {
                 accounts: [],
                 platforms: [],
                 investments: [],
@@ -68,10 +56,8 @@ async function startServer() {
             const { email } = req.params;
             const userData: UserData = req.body;
             console.log(`[SERVER] Received data for ${email}:`, JSON.stringify(userData, null, 2));
-            const db = await readDb();
-            db[email] = userData;
-            await writeDb(db);
-            console.log(`[SERVER] Successfully wrote data for ${email} to db.json`);
+            await kv.set(email, userData);
+            console.log(`[SERVER] Successfully wrote data for ${email} to Vercel KV`);
             res.status(200).json({ message: 'Data saved successfully' });
         } catch (error) {
             console.error('[SERVER] Error writing data:', error);
