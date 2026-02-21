@@ -38,6 +38,7 @@ interface AppContextType {
   updateReceivable: (receivable: Receivable) => void;
   deleteReceivable: (id: string) => void;
   markReceivableAsPaid: (id: string, accountId: string) => void;
+  isDataLoaded: boolean;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -411,6 +412,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       assets, addAsset, updateAsset, updateAssetValue, sellAsset,
       transactions, addTransaction,
       receivables, addReceivable, updateReceivable, deleteReceivable, markReceivableAsPaid,
+      isDataLoaded,
     }}>
       {children}
     </AppContext.Provider>

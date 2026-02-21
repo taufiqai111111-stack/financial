@@ -1,7 +1,7 @@
 
 import React, { useState, useMemo, ReactNode } from 'react';
 import { HashRouter, Routes, Route, useLocation, Navigate, Outlet } from 'react-router-dom';
-import { AppProvider } from './contexts/AppContext';
+import { AppProvider, useAppContext } from './contexts/AppContext';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -28,7 +28,18 @@ const pageTitles: { [key: string]: string } = {
 
 const MainContent: React.FC = () => {
   const location = useLocation();
+  const { isDataLoaded } = useAppContext();
   const title = pageTitles[location.pathname] || 'Dompet Digital';
+
+  if (!isDataLoaded) {
+    return (
+      <main className="flex-1 p-4 md:p-6 lg:p-8 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-lg font-semibold text-gray-700">Memuat data...</p>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-y-auto">
