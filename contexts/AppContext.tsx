@@ -57,21 +57,25 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   useEffect(() => {
     const fetchData = async () => {
       if (currentUser) {
+        setIsDataLoaded(false); // Reset loading state
         try {
           const response = await fetch(`/api/data/${currentUser.email}`);
           if (response.ok) {
             const data = await response.json();
+            console.log('Data fetched:', data);
             setAccounts(data.accounts || []);
             setPlatforms(data.platforms || []);
             setInvestments(data.investments || []);
             setTransactions(data.transactions || []);
             setReceivables(data.receivables || []);
             setAssets(data.assets || []);
+          } else {
+            console.error('Failed to fetch data, status:', response.status);
           }
         } catch (error) {
           console.error('Failed to fetch data', error);
         } finally {
-          setIsDataLoaded(true);
+          setIsDataLoaded(true); // Set loaded after fetch attempt
         }
       } else {
         // Clear data if user logs out
@@ -87,25 +91,35 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     fetchData();
   }, [currentUser]);
 
+  const isInitialDataLoaded = React.useRef(false);
+
+  useEffect(() => {
+    if (isDataLoaded && !isInitialDataLoaded.current) {
+        isInitialDataLoaded.current = true;
+    }
+  }, [isDataLoaded]);
+
   useEffect(() => {
     const saveData = async () => {
-      if (currentUser && isDataLoaded) {
+      if (currentUser && isInitialDataLoaded.current) {
         const dataToSave = { accounts, platforms, investments, transactions, receivables, assets };
+        console.log('Saving data:', dataToSave);
         try {
-          await fetch(`/api/data/${currentUser.email}`, {
+          const response = await fetch(`/api/data/${currentUser.email}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dataToSave),
           });
+          if (!response.ok) {
+            console.error('Failed to save data, status:', response.status);
+          }
         } catch (error) {
           console.error('Failed to save data', error);
         }
       }
     };
-    if (isDataLoaded) {
-        saveData();
-    }
-  }, [accounts, platforms, investments, transactions, receivables, assets]);
+    saveData();
+  }, [accounts, platforms, investments, transactions, receivables, assets, currentUser]);
 
   const addTransaction = (transaction: Omit<Transaction, 'id'>) => {
     const newTransaction = { ...transaction, id: crypto.randomUUID() };

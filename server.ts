@@ -45,26 +45,38 @@ async function startServer() {
     app.use(bodyParser.json());
 
     app.get('/api/data/:email', async (req, res) => {
-        const { email } = req.params;
-        const db = await readDb();
-        const userData = db[email] || {
-            accounts: [],
-            platforms: [],
-            investments: [],
-            assets: [],
-            transactions: [],
-            receivables: [],
-        };
-        res.json(userData);
+        try {
+            const { email } = req.params;
+            const db = await readDb();
+            const userData = db[email] || {
+                accounts: [],
+                platforms: [],
+                investments: [],
+                assets: [],
+                transactions: [],
+                receivables: [],
+            };
+            res.json(userData);
+        } catch (error) {
+            console.error('Error reading data:', error);
+            res.status(500).json({ message: 'Error reading data' });
+        }
     });
 
     app.post('/api/data/:email', async (req, res) => {
-        const { email } = req.params;
-        const userData: UserData = req.body;
-        const db = await readDb();
-        db[email] = userData;
-        await writeDb(db);
-        res.status(200).json({ message: 'Data saved successfully' });
+        try {
+            const { email } = req.params;
+            const userData: UserData = req.body;
+            console.log(`[SERVER] Received data for ${email}:`, JSON.stringify(userData, null, 2));
+            const db = await readDb();
+            db[email] = userData;
+            await writeDb(db);
+            console.log(`[SERVER] Successfully wrote data for ${email} to db.json`);
+            res.status(200).json({ message: 'Data saved successfully' });
+        } catch (error) {
+            console.error('[SERVER] Error writing data:', error);
+            res.status(500).json({ message: 'Error writing data' });
+        }
     });
 
     if (process.env.NODE_ENV !== 'production') {
