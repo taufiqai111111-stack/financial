@@ -24,11 +24,11 @@ const AccountForm: React.FC<{
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nama Rekening</label>
-        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500" />
       </div>
       <div>
         <label htmlFor="type" className="block text-sm font-medium text-gray-700">Jenis Rekening</label>
-        <select id="type" value={type} onChange={(e) => setType(e.target.value as AccountType)} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+        <select id="type" value={type} onChange={(e) => setType(e.target.value as AccountType)} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500">
           {Object.values(AccountType).map(t => <option key={t} value={t}>{t}</option>)}
         </select>
       </div>
@@ -41,11 +41,11 @@ const AccountForm: React.FC<{
           value={balance === 0 ? '' : balance} 
           onChange={(e) => setBalance(parseFloat(e.target.value) || 0)} 
           placeholder="0"
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" 
+          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500" 
         />
       </div>
       <div className="flex justify-end pt-4">
-        <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        <button type="submit" className="px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
           Simpan
         </button>
       </div>
@@ -105,7 +105,7 @@ const Accounts: React.FC = () => {
               <Icon name="download" className="w-5 h-5 mr-2" />
               Unduh Data
             </button>
-            <button onClick={openAddModal} className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+            <button onClick={openAddModal} className="flex items-center px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700">
               <Icon name="plus" className="w-5 h-5 mr-2" />
               Tambah Rekening
             </button>

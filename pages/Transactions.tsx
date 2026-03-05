@@ -53,7 +53,7 @@ const TransactionForm: React.FC<{ onSave: (transaction: Omit<Transaction, 'id' |
                         key={t} 
                         type="button" 
                         onClick={() => handleTypeChange(t)} 
-                        className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${type === t ? 'bg-white text-blue-700 shadow' : 'text-gray-600 hover:bg-white/50'}`}
+                        className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${type === t ? 'bg-white text-sky-700 shadow' : 'text-gray-600 hover:bg-white/50'}`}
                     >
                         {t}
                     </button>
@@ -121,7 +121,7 @@ const TransactionForm: React.FC<{ onSave: (transaction: Omit<Transaction, 'id' |
             </div>
             
             <div className="flex justify-end pt-4">
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Simpan Transaksi</button>
+                <button type="submit" className="px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700">Simpan Transaksi</button>
             </div>
         </form>
     );
@@ -175,7 +175,7 @@ const Transactions: React.FC = () => {
         switch (type) {
             case TransactionType.Income: return 'text-green-600';
             case TransactionType.Expense: return 'text-red-600';
-            case TransactionType.Transfer: return 'text-blue-600';
+            case TransactionType.Transfer: return 'text-sky-600';
         }
     }
 
@@ -194,7 +194,7 @@ const Transactions: React.FC = () => {
                             <Icon name="download" className="w-5 h-5 mr-2" />
                             Unduh Laporan
                         </button>
-                        <button onClick={() => setModalOpen(true)} disabled={accounts.length === 0} className="flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400">
+                        <button onClick={() => setModalOpen(true)} disabled={accounts.length === 0} className="flex items-center justify-center px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700 disabled:bg-gray-400">
                             <Icon name="plus" className="w-5 h-5 mr-2" />
                             Tambah Transaksi
                         </button>

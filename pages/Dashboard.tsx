@@ -68,7 +68,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-xl shadow-lg">
+      <div className="bg-gradient-to-r from-sky-400 to-blue-500 text-white p-6 rounded-xl shadow-lg">
         <div className="flex items-center space-x-4">
           <Icon name="total-wealth" className="w-10 h-10" />
           <div className="min-w-0">

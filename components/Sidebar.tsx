@@ -40,12 +40,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
           className={
             `flex items-center px-4 py-3 rounded-lg transition-colors duration-200 group ${
               isActive 
-                ? 'bg-blue-600 text-white font-semibold shadow-md' 
-                : 'text-gray-600 hover:bg-blue-50 hover:text-blue-600'
+                ? 'bg-sky-500 text-white font-semibold shadow-md' 
+                : 'text-gray-600 hover:bg-sky-50 hover:text-sky-600'
             }`
           }
         >
-          <Icon name={icon} className={`w-6 h-6 mr-4 transition-colors duration-200 ${isActive ? 'text-white' : 'text-blue-500 group-hover:text-blue-600'}`} />
+          <Icon name={icon} className={`w-6 h-6 mr-4 transition-colors duration-200 ${isActive ? 'text-white' : 'text-sky-500 group-hover:text-sky-600'}`} />
           <span>{label}</span>
         </div>
       )}
@@ -58,7 +58,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
       <aside className={`fixed top-0 left-0 w-64 bg-white h-full z-40 shadow-lg transform transition-transform md:relative md:translate-x-0 md:shadow-none ${isOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col`}>
         <div>
           <div className="flex items-center justify-between p-4 border-b">
-            <h1 className="text-2xl font-bold text-blue-600">Dompet Digital</h1>
+            <h1 className="text-2xl font-bold text-sky-600">Dompet Digital</h1>
             <button onClick={() => setIsOpen(false)} className="md:hidden text-gray-500 hover:text-gray-800">
               <Icon name="close" className="w-6 h-6" />
             </button>

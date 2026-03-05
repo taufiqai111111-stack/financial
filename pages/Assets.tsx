@@ -40,7 +40,7 @@ const AssetForm: React.FC<{ onSave: (asset: Omit<Asset, 'id'>, isNewPurchase: bo
                             type="checkbox" 
                             checked={isNewPurchase} 
                             onChange={e => setIsNewPurchase(e.target.checked)} 
-                            className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                            className="h-5 w-5 rounded border-gray-300 text-sky-600 focus:ring-sky-500"
                         />
                         <span className="text-sm text-gray-700">Buat transaksi pengeluaran untuk aset baru ini</span>
                     </label>
@@ -79,7 +79,7 @@ const AssetForm: React.FC<{ onSave: (asset: Omit<Asset, 'id'>, isNewPurchase: bo
                 <input type="number" value={currentValue === 0 ? '' : currentValue} onChange={e => setCurrentValue(parseFloat(e.target.value) || 0)} required placeholder="0" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
             </div>
             <div className="flex justify-end pt-4">
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Simpan Aset</button>
+                <button type="submit" className="px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700">Simpan Aset</button>
             </div>
         </form>
     );
@@ -100,7 +100,7 @@ const UpdateAssetValueForm: React.FC<{ onSave: (newValue: number) => void; curre
                 <input type="number" value={newValue === 0 ? '' : newValue} onChange={e => setNewValue(parseFloat(e.target.value) || 0)} placeholder="0" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
             </div>
             <div className="flex justify-end pt-4">
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Update</button>
+                <button type="submit" className="px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700">Update</button>
             </div>
         </form>
     );
@@ -210,7 +210,7 @@ const Assets: React.FC = () => {
               onClick={openAddModal} 
               disabled={!canAddAsset}
               title={!canAddAsset ? "Silakan tambah rekening terlebih dahulu" : "Tambah Aset"}
-              className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">
+              className="flex items-center px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700 disabled:bg-gray-400 disabled:cursor-not-allowed">
               <Icon name="plus" className="w-5 h-5 mr-2" />
               Tambah Aset
             </button>

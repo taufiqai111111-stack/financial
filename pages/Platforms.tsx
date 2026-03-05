@@ -17,10 +17,10 @@ const PlatformForm: React.FC<{ onSave: (platform: Omit<Platform, 'id'>) => void;
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nama Platform</label>
-        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500" />
       </div>
       <div className="flex justify-end pt-4">
-        <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        <button type="submit" className="px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
           Simpan
         </button>
       </div>
@@ -64,7 +64,7 @@ const Platforms: React.FC = () => {
       <div className="bg-white p-6 rounded-xl shadow-md">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold text-gray-800">Daftar Platform Investasi</h2>
-          <button onClick={openAddModal} className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+          <button onClick={openAddModal} className="flex items-center px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700">
             <Icon name="plus" className="w-5 h-5 mr-2" />
             Tambah Platform
           </button>

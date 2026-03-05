@@ -67,7 +67,7 @@ const InvestmentForm: React.FC<{ onSave: (investment: Omit<Investment, 'id'>) =>
         />
       </div>
       <div className="flex justify-end pt-4">
-        <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Simpan</button>
+        <button type="submit" className="px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700">Simpan</button>
       </div>
     </form>
   );
@@ -96,7 +96,7 @@ const UpdateValueForm: React.FC<{ onSave: (newValue: number) => void; currentVal
                 />
             </div>
             <div className="flex justify-end pt-4">
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Update</button>
+                <button type="submit" className="px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700">Update</button>
             </div>
         </form>
     );
@@ -173,7 +173,7 @@ const Investments: React.FC = () => {
               onClick={openAddModal} 
               disabled={!canAddInvestment}
               title={!canAddInvestment ? "Silakan tambah rekening dan platform terlebih dahulu" : "Tambah Investasi"}
-              className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">
+              className="flex items-center px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700 disabled:bg-gray-400 disabled:cursor-not-allowed">
               <Icon name="plus" className="w-5 h-5 mr-2" />
               Tambah Investasi
             </button>

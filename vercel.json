@@ -1,8 +1,13 @@
 {
-  "builds": [
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/node"
+      "source": "/(.*)",
+      "destination": "/server.ts"
     }
-  ]
+  ],
+  "functions": {
+    "server.ts": {
+      "includeFiles": "db.json"
+    }
+  }
 }

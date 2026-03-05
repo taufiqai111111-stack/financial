@@ -115,7 +115,7 @@ const Transfers: React.FC = () => {
                         </div>
                         {error && <p className="text-sm text-red-600">{error}</p>}
                         <div className="flex justify-end pt-4">
-                            <button type="submit" className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            <button type="submit" className="flex items-center px-4 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700">
                                 <Icon name="transfer" className="w-5 h-5 mr-2" />
                                 Simpan Transfer
                             </button>
@@ -151,7 +151,7 @@ const Transfers: React.FC = () => {
                                             <p className="text-sm font-medium text-gray-900">{tx.description}</p>
                                             <p className="text-sm text-gray-500">{fromAccount?.name} → {toAccount?.name}</p>
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-blue-600">
+                                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-sky-600">
                                             {formatCurrency(tx.amount)}
                                         </td>
                                     </tr>
